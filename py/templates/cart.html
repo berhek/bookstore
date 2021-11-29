@@ -1,0 +1,65 @@
+{% extends "base.html" %} 
+
+{% block title %} Cart {% endblock%}
+
+{% block content %} 
+
+<div class="d-flex justify-content-center mt-5" style="height: 80vh;">
+  <div class="d-flex justify-content-center row">
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Total</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for book in cart %}
+          <tr>
+            <td class="col-sm-8 col-md-6">
+              <div class="media">
+                  <img class="media-object" src="{{book['photo']}}" style="height: 190px; width: 130px;">
+                  <div class="media-body">
+                    <h4>{{ book['name']}}</h4>
+                  </div>
+              </div>
+            </td>
+            <td class="col-sm-1 col-md-1" style="text-align: center">
+                <p><strong>{{book['quantity']}}</strong></p>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center"><strong>£{{book['price']}}</strong></td>
+            <td class="col-sm-1 col-md-1 text-center"><strong>£{{book['item_total']}}</strong></td>
+            <td class="col-sm-1 col-md-1">
+              <a href="{{ url_for('views.delete_from_cart', index = book['index'])}}" class="btn btn-danger">Remove</a>
+          </tr>
+          {% endfor %}
+          <tr>
+              <td>   </td>
+              <td>   </td>
+              <td>   </td>
+              <td><h3>Total</h3></td>
+              <td class="text-right"><h3><strong>£{{ total }}</strong></h3></td>
+          </tr>
+          <tr>
+            <td>   </td>
+            <td>   </td>
+            <td>
+              <a href="{{url_for('views.home')}}" class="btn btn-primary">Continue Shopping</a>
+            </td>
+            <td>
+              <a href="{{url_for('views.empty_cart')}}" class="btn btn-danger">Empty Cart</a>
+            </td>
+            <td>
+              <a href="#" class="btn btn-success">Checkout</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %} 

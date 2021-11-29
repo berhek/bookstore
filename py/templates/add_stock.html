@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+
+{% block title %} Add Stock {% endblock%}
+
+{% block content %} 
+
+<div class="d-flex justify-content-center mt-4 mb-3">
+  <h1>Add stock</h1>
+</div>
+
+<div class="container-sm">
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="name_of_book" class="form-label">Name of the book:</label>
+      <input type="name_of_book" class="form-control" id="name_of_book" name="name_of_book" placeholder="Enter the name of the book">
+    </div>
+
+    <div class="mb-3">
+      <label for="name_of_author" class="form-label">Author of the book:</label>
+      <input type="name_of_author" class="form-control" id="name_of_author" name="name_of_author" placeholder="Enter the author's name">
+    </div>
+
+    <div class="mb-3">
+      <label for="isbn13" class="form-label">ISBN-13 number:</label>
+      <input type="isbn13" class="form-control" id="isbn13" name="isbn13" placeholder="Enter the ISBN-13 number">
+    </div>
+
+    <div class="mb-3">
+      <label for="book_description" class="form-label">Multiline book description:</label>
+      <textarea class="form-control" id="book_description" name ="book_description" rows="5"></textarea>
+    </div>
+
+    <div class="d-flex justify-content-around mt-5 mb-5">
+      <div>
+        <h5>Upload Image</h5>
+        <input type=file name=file>
+      </div>
+
+      <div>
+        <h5>Publication date</h5>
+        <input type="date" class="form-control" id="date" name="date">
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-around mt-3">
+      <div class="slidecontainer">
+        <h5>Trade Price:</h5>
+        <input type="range" min="0" max="100" value="0" class="slider" id="slider1" name="trade_price"> 
+        <p>Value: <span id="trade_price" name ="trade_price"></span></p>
+      </div>
+
+      <div class="slidecontainer">
+        <h5>Retail Price:</h5>
+        <input type="range" min="0" max="100" value="0" class="slider" id="slider2" name="retail_price">
+        <p>Value: <span id="retail_price" name ="retail_price"></span></p>
+      </div>
+
+      <div class="slidecontainer">
+        <h5>Quantity:</h5>
+        <input type="range" min="0" max="20" value="0" class="slider" id="slider3" name="quantity">
+        <p>Value: <span id="quantity" name ="quantity"></span></p>
+      </div>
+      
+    </div>
+     <button type="submit" class="btn btn-primary mt-3">Add book</button>
+  </form>
+</div>
+
+<script>
+  var slider1 = document.getElementById("slider1");
+  var output1 = document.getElementById("trade_price");
+  output1.innerHTML = slider1.value;
+
+  var slider2 = document.getElementById("slider2");
+  var output2 = document.getElementById("retail_price");
+  output2.innerHTML = slider2.value;
+
+  var slider3 = document.getElementById("slider3");
+  var output3 = document.getElementById("quantity");
+  output3.innerHTML = slider3.value;
+
+  slider1.oninput = function() {
+    output1.innerHTML = this.value;
+  }
+  slider2.oninput = function() {
+    output2.innerHTML = this.value;
+  }
+  slider3.oninput = function() {
+    output3.innerHTML = this.value;
+  }
+</script>
+
+{% endblock%}
